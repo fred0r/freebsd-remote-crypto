@@ -1,5 +1,5 @@
 # Used during testing to undo the setup
 umount /mnt/xboot
 zpool destroy tank
-geli detach mirror/swap gpt/zroot0 gpt/zroot1
+geli detach swap gpt/zroot
 gmirror destroy boot swap
