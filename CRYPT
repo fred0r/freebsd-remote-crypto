@@ -143,7 +143,7 @@ zpool import -o altroot=$base -o cachefile=/tmp/zpool.cache $pool
 cp /tmp/zpool.cache $base/boot/zfs/
 
 [ ! -d $base$ufsdir ] && mkdir $base$ufsdir
-mount /dev/mirror/boot $base$ufsdir
+mount /dev/gpt/boot $base$ufsdir
 cp -pRP $base/boot $base$ufsdir
 rm -rf $base/boot
 ln -s ${ufsdir#/}/boot $base/boot
@@ -156,7 +156,7 @@ echo /dev/boot $ufsdir ufs  rw 1 1 >> /mnt/etc/fstab
 echo /dev/swap.eli none   swap sw 0 0 >> /mnt/etc/fstab
 
 echo 'geom_eli_load="YES"'           >> $base/boot/loader.conf
-echo 'geom_mirror_load="YES"'        >> $base/boot/loader.conf
+# echo 'geom_mirror_load="YES"'        >> $base/boot/loader.conf
 echo 'zfs_load="YES"'                >> $base/boot/loader.conf
 # echo vfs.root.mountfrom=\"ufs:/dev/mirror/boot\" >> $base/boot/loader.conf
 echo vfs.root.mountfrom=\"ufs:/dev/boot\" >> $base/boot/loader.conf
