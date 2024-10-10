@@ -60,7 +60,7 @@ gpart add -l zroot      -t freebsd-zfs  -a 4k $geom0
 # gmirror label -b load -F boot /dev/gpt/boot0 /dev/gpt/boot1
 
 # geli onetime -d -e AES-XTS -l 256 -s 4096 /dev/mirror/swap
-geli onetime -d -e AES-XTS -l 256 -s 4096 /dev/swap
+geli onetime -d -e AES-XTS -l 256 -s 4096 /dev/gpt/swap
 
 set +x
 echo -n Password:
@@ -81,7 +81,7 @@ gpart bootcode -b /boot/pmbr -p /boot/gptboot -i 1 $geom0
 
 # no idea why -j fails....
 #newfs -U -j /dev/mirror/boot
-newfs -U /dev/boot
+newfs -U /dev/gpt/boot
 
 pool=tank
 # zpool create -f -m none -o altroot=$base -o cachefile=/tmp/zpool.cache $pool mirror /dev/gpt/zroot0.eli /dev/gpt/zroot1.eli
