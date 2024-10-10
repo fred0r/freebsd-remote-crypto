@@ -131,8 +131,8 @@ cat <<EOM > $dst/root/DWIM
 PATH=${PATH}:/bin:/sbin:/rescue
 set -ex
 fsck -p
-geli attach gpt/zroot0
-geli attach gpt/zroot1
+geli attach gpt/zroot
+# geli attach gpt/zroot1
 kenv vfs.root.mountfrom="zfs:$pool/root"
 reboot -r
 
@@ -148,8 +148,8 @@ cat <<EOM > $dst/root/FIX
 [ -z "\$TERM" ] && TERM=vt100 && export TERM
 PATH=\${PATH}:/bin:/sbin:/rescue:${tmpbase}/usr/bin:${tmpbase}/usr/local/bin
 fsck -p
-geli attach gpt/zroot0
-geli attach gpt/zroot1
+geli attach gpt/zroot
+# geli attach gpt/zroot1
 kenv vfs.root.mountfrom="zfs:$pool/root"
 mount -u /
 [ ! -d $tmpbase ] && mkdir $tmpbase || true
